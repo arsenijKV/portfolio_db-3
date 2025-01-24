@@ -92,6 +92,12 @@ def link_project(message, data):
     bot.send_message(message.chat.id, "Введите текущий статус проекта", reply_markup=gen_markup(statuses))
     bot.register_next_step_handler(message, callback_project, data=data, statuses=statuses)
 
+'''def skills_project(message, data):
+    data.append(message.text)
+    skills = [x[0] for x in manager.get_skills()] 
+    bot.send_message(message.chat.id, "Введите используешиеся скилл", reply_markup=gen_markup(skills))
+    bot.register_next_step_handler(message, callback_project, data=data, skills=skills)'''
+
 def callback_project(message, data, statuses):
     status = message.text
     if message.text == cancel_button:
