@@ -94,7 +94,14 @@ class DB_Manager:
         return self.__select_data(sql='SELECT project_id FROM projects WHERE project_name = ? AND user_id = ?  ', data = (project_name, user_id,))[0][0]
         
     def get_skills(self):
-        return self.__select_data(sql='SELECT * FROM skills')
+        sql = 'SELECT skill_name from skills'
+        return self.__select_data(sql)
+    
+    def get_skills_id(self, skill_name):
+        sql = 'SELECT skill_id FROM skills WHERE skill_name = ?'
+        res = self.__select_data(sql, (skill_name),)
+        if res: return res[0][0]
+        else: return None
     
     def get_project_skills(self, project_name):
         res = self.__select_data(sql='''SELECT skill_name FROM projects 
